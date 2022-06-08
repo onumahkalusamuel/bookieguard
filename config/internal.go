@@ -3,6 +3,7 @@ package config
 import (
 	"net/http"
 	"os"
+	"path/filepath"
 
 	"github.com/denisbrodbeck/machineid"
 )
@@ -14,6 +15,7 @@ var (
 	Key                = "ab9312a52781f4b7c7edf4341ef940daff94c567ffa503c3db8125fec68c4225" //encode key in bytes to string and keep as secret, put in a vault
 	ActivationFile     = "@ain8a.book"
 	BlocklistFile      = "@bft64.book"
+	HostsFile          = "@h5yg5.book"
 	Hosts              = []string{}
 )
 
@@ -36,12 +38,12 @@ const (
 	WEB_HOST   = "localhost" // leave empty for localhost
 	PROXY_PORT = "8088"
 	WEB_PORT   = "8777"
-
-	HTTP_BASE_DIR = http.Dir("./web/")
 )
 
-var PROXY_SERVER_HANDLE *http.Server
+var ex, _ = os.Executable()
 
-// var WEB_SERVER_HANDLE http.Server
+var HTTP_BASE_DIR = http.Dir(filepath.Dir(ex) + "/web/")
+
+var PROXY_SERVER_HANDLE = new(http.Server)
 
 type BodyStructure map[string]string

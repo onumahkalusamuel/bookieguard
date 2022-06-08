@@ -1,7 +1,10 @@
 vendor/
 
 *.exe
+*.msi
+*.book
 
-logs/
+logs/*
+!logs/.gitignore
 
 go.sum

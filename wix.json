@@ -2,42 +2,39 @@
   "product": "Bookie Guard",
   "company": "Zebitech Global Services",
   "license": "LICENSE",
-  "upgrade-code": "070c8d2b-283d-4783-94e9-59672f7353ac",
+  "upgrade-code": "",
   "files": {
-    "guid": "9367e385-0263-4403-af79-253dd97a04e7",
+    "guid": "",
     "items": [
       "bookieguard.exe"
     ]
   },
   "directories": [
-    "web"
+    "web",
+    "logs"
   ],
   "env": {
-    "guid": "d2986f0a-2c5a-43f0-bf5a-2ccd406572e4",
-    "vars": [
-      {
-        "name": "PATH",
-        "value": "[INSTALLDIR]",
-        "permanent": "no",
-        "system": "no",
-        "action": "set",
-        "part": "last"
-      }
-    ]
+    "guid": "",
+    "vars": []
   },
   "shortcuts": {
-    "guid": "cb49b9ea-0e85-4061-942f-0eb9d792a082",
+    "guid": "",
     "items": [
       {
         "name": "Bookie Guard",
         "description": "Bookie Guard Software",
         "target": "[INSTALLDIR]\\bookieguard.exe",
         "wdir": "INSTALLDIR",
-        "arguments": "launch",
+        "arguments": "",
         "icon": "ico.ico"
       }
     ]
   },
+  "hooks": [
+    {"when": "install", "command": "sc.exe create BookieGuardSvc binPath=\"[INSTALLDIR]bookieguard.exe\" type=share start=auto DisplayName=\"Bookie Guard\""},
+    {"when": "install", "command": "sc.exe start BookieGuardSvc"},
+    {"when": "uninstall", "command": "sc.exe delete BookieGuardSvc"}
+  ],
   "choco": {
     "description": "Bookie Guard",
     "project-url": "https://github.com/onumahkalusamuel/bookieguard",

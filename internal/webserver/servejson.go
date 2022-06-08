@@ -9,14 +9,10 @@ import (
 
 func ServeJSON(w http.ResponseWriter, responseBody config.BodyStructure) {
 
-	m, err := json.Marshal(responseBody)
-	if err != nil {
-		return
-	}
-
 	w.Header().Set("Content-Type", "application/json")
 
-	err = json.NewEncoder(w).Encode(&m)
+	err := json.NewEncoder(w).Encode(&responseBody)
+
 	if err != nil {
 		return
 	}

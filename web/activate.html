@@ -10,39 +10,41 @@
 </head>
 <body>
     <div class="container">
-        <h3>Let's activate</h3>
-        <hr>
-        <form id="form" action="/activate" method="POST" onsubmit="return ajaxPost();" autocomplete="off">
-            <br>
-            <div>
-                <label for="email">Email:</label><br>
-                <input type="email" id="email" name="email" placeholder="john@doe.com">
+        <div class="inner">
+            <div class="page-title">
+                <h3>activation</h3>
             </div>
-            <br>
-            <div>
-                Shops:<br>
-                <label for="shop">
-                    <input type="checkbox" value="bet9ja" name="shop" id="shop"/>
-                    Bet9ja
-                </label>
-                <label for="shop">
-                    <input type="checkbox" value="nairabet" name="shop" id="shop"/>
-                    Nairabet
-                </label>
-                <label for="shop">
-                    <input type="checkbox" value="betking" name="shop" id="shop"/>
-                    BetKing
-                </label>
-                <label for="shop">
-                    <input type="checkbox" value="merrybet" name="shop" id="shop"/>
-                    MerryBet
-                </label>
+            <div class="info">
+                To get started, enter the email you used for payment and select your shop type
             </div>
-            <br>
-            <div>
-                <button type="submit">Activate</button>
+            <form id="form" action="/activate" method="POST" onsubmit="return ajaxPost();" autocomplete="off">
+                <input type="email" aria-label="Email" class="text-input" name="email" placeholder="john@doe.com" required>
+                <div class="shops-holder">
+                    <label for="bet9ja" class="radio-input-label">
+                        <input type="radio" class="radio-input" value="bet9ja" name="shop" id="bet9ja" required/>
+                        <span>Bet9ja</span>
+                    </label>
+                    <label for="nairabet" class="radio-input-label">
+                        <input type="radio" class="radio-input" value="nairabet" name="shop" id="nairabet" required/>
+                        <span>NairaBet</span>
+                    </label>
+                    <label for="betking" class="radio-input-label">
+                        <input type="radio" class="radio-input" value="betking" name="shop" id="betking" required/>
+                        <span>BetKing</span>
+                    </label>
+                    <label for="merrybet" class="radio-input-label">
+                        <input type="radio" class="radio-input" value="merrybet" name="shop" id="merrybet" required/>
+                        <span>MerryBet</span>
+                    </label>
+                </div>
+                <div>
+                    <button type="submit" class="submit-button">Activate</button>
+                </div>
+            </form>
+            <div class="system-info">
+                <!--#####SYSTEM_INFO#####-->
             </div>
-        </form>
+        </div>
     </div>
 </body>
 </html>

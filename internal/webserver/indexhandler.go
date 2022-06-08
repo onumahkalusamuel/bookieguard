@@ -39,7 +39,7 @@ func IndexHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	if errCode == config.CHECK_ACTIVATION_NOTACTIVATED {
-		ServeHTML(w, "reactivate")
+		ServeHTML(w, "activate")
 		return
 	}
 }

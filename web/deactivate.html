@@ -10,24 +10,25 @@
 </head>
 <body>
     <div class="container">
-        <h3>Let's deactivate</h3>
-        <hr>
-        <form id="form" action="/deactivate" method="POST" onsubmit="return ajaxPost();" autocomplete="off">
-            <br>
-            <div>
-                <label for="email">Email:</label><br>
-                <input type="email" id="email" name="email" placeholder="john@doe.com">
+        <div class="inner">
+            <div class="page-title">
+                <h3>deactivation</h3>
             </div>
+            <div class="info">To deactivate, enter the email and unlock code</div>
             <br>
-            <div>
-                <label for="unlockcode">Unlock Code:</label><br>
-                <input type="password" id="unlockcode" name="unlockcode" placeholder="xxxxxx">
+            <form id="form" action="/deactivate" method="POST" onsubmit="return ajaxPost();" autocomplete="off">
+                <input type="email" aria-label="Email" class="text-input" name="email" placeholder="john@doe.com" required>
+                <input type="password" aria-label="Unlock Code" class="text-input" name="unlockcode" placeholder="xxxxxxxx" autocomplete="off" readonly 
+                onfocus="this.removeAttribute('readonly');" required>
+               
+                <div>
+                    <button type="submit" class="submit-button">Deactivate</button>
+                </div>
+            </form>
+            <div class="system-info">
+                <!--#####SYSTEM_INFO#####-->
             </div>
-            <br>
-            <div>
-                <button type="submit">DeActivate</button>
-            </div>
-        </form>
+        </div>
     </div>
 </body>
 </html>

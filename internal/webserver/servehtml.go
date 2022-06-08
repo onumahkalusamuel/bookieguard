@@ -3,6 +3,7 @@ package webserver
 import (
 	"net/http"
 	"os"
+	"strings"
 
 	"github.com/onumahkalusamuel/bookieguard/config"
 )
@@ -12,5 +13,16 @@ func ServeHTML(w http.ResponseWriter, html string) {
 	if err != nil {
 		f = NotFound(err.Error())
 	}
-	w.Write(f)
+
+	// add system info
+	toString := string(f)
+
+	finalString := strings.Replace(
+		toString,
+		"<!--#####SYSTEM_INFO#####-->",
+		"<strong>Computer Name:</strong> "+config.ComputerName,
+		-1,
+	)
+
+	w.Write([]byte(finalString))
 }

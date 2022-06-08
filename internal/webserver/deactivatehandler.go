@@ -1,7 +1,9 @@
 package webserver
 
 import (
+	"fmt"
 	"net/http"
+	"os"
 
 	"github.com/onumahkalusamuel/bookieguard/config"
 	"github.com/onumahkalusamuel/bookieguard/internal"
@@ -39,6 +41,8 @@ func DeactivateHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	fmt.Println(content)
+
 	if content["email"] != config.Email || content["unlockCode"] != config.UnlockCode {
 		ServeJSON(w, config.BodyStructure{
 			"success": "false",
@@ -57,6 +61,11 @@ func DeactivateHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	// remove files
+	os.Remove(config.ActivationFile)
+	os.Remove(config.BlocklistFile)
+
+	// return response
 	ServeJSON(w, config.BodyStructure{
 		"success":  "true",
 		"message":  "Service deactivated successfully. Don't forget to reset your proxy settings.",

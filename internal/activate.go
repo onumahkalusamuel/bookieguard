@@ -22,7 +22,7 @@ func Activate(data config.BodyStructure) (bool, error) {
 	}
 
 	// store configuration details
-	f, err := os.OpenFile(config.ActivationFile, os.O_WRONLY|os.O_CREATE, 0600)
+	f, err := os.Create(config.ActivationFile)
 	if err != nil {
 		itrlog.Error(err)
 		return false, err
@@ -39,7 +39,7 @@ func Activate(data config.BodyStructure) (bool, error) {
 	}
 
 	// save blocklist
-	b, err := os.OpenFile(config.BlocklistFile, os.O_WRONLY|os.O_CREATE, 0600)
+	b, err := os.Create(config.BlocklistFile)
 	if err != nil {
 		itrlog.Error(err)
 		return false, err

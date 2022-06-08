@@ -3,6 +3,9 @@ package config
 // Display name for the app
 const AppName = "Bookie Guard"
 
+// name to be used for the service
+const AppServiceName = "BookieGuardSvc"
+
 // App display name
 const AppDisplayName = "Bookie Guard"
 

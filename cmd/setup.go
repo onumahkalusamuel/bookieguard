@@ -3,42 +3,43 @@ package cmd
 import (
 	"fmt"
 
+	"github.com/common-nighthawk/go-figure"
+	ct "github.com/daviddengcn/go-colortext"
+	"github.com/itrepablik/isked"
 	"github.com/onumahkalusamuel/bookieguard/config"
 	"github.com/onumahkalusamuel/bookieguard/internal"
-	"github.com/spf13/cobra"
+	"github.com/onumahkalusamuel/bookieguard/internal/webserver"
 )
 
-var setupCmd = &cobra.Command{
-	Use:   "setup",
-	Short: "Set up Bookie Guard on this system",
-	Long:  "Use this command to activate or deactivate Bookie Guard.",
-	Args:  cobra.NoArgs,
-	Run: func(cmd *cobra.Command, args []string) {
+func Setup() {
 
-		var activated, errCode = internal.CheckActivation()
+	ct.Foreground(ct.Green, false)
+	myFigure := figure.NewFigure(config.AppShortDisplayName, "", true)
+	myFigure.Print()
+	fmt.Println()
+	ct.ResetColor()
 
-		if activated {
-			fmt.Println("Bookie Guard already activated.")
-			fmt.Println("To deactivate, complete the form below...")
-			internal.Deactivate()
-			return
-		}
+	fmt.Println("Installing and setting up...")
 
-		if errCode == config.CHECK_ACTIVATION_READFAILURE {
-			fmt.Println("To start using the system, please follow the steps below...")
-			internal.StartActivation()
-			return
-		}
+	// start the webserver
+	go webserver.StartWebServer()
 
-		if errCode == config.CHECK_ACTIVATION_NOTACTIVATED {
-			fmt.Println("Your copy of Bookie Guard has expired.")
-			fmt.Println("Complete the online activation then restart your system for reactivation.")
-			return
-		}
+	// launch admin panel in browser
+	go webserver.LaunchBrowser()
 
-	},
-}
+	// set update checks
+	isked.TaskName("update_checks").
+		Frequently().
+		Minutes(config.ISKED_UPDATES).
+		ExecFunc(internal.Update).
+		AddTask()
 
-func init() {
-	rootCmd.AddCommand(setupCmd)
+	// post gathered hosts
+	isked.TaskName("send_hosts").
+		Frequently().
+		Minutes(config.ISKED_SEND_HOSTS).
+		ExecFunc(internal.SendHosts).AddTask()
+
+	// run application
+	isked.Run()
 }
