@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Deactivate - Bookie Guard</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='static/css/main.css'>
+    <script src='static/js/main.js'></script>
+</head>
+<body>
+    <div class="container">
+        <h3>Let's deactivate</h3>
+        <hr>
+        <form id="form" action="/deactivate" method="POST" onsubmit="return ajaxPost();" autocomplete="off">
+            <br>
+            <div>
+                <label for="email">Email:</label><br>
+                <input type="email" id="email" name="email" placeholder="john@doe.com">
+            </div>
+            <br>
+            <div>
+                <label for="unlockcode">Unlock Code:</label><br>
+                <input type="password" id="unlockcode" name="unlockcode" placeholder="xxxxxx">
+            </div>
+            <br>
+            <div>
+                <button type="submit">DeActivate</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

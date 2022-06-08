@@ -1,0 +1,47 @@
+{
+  "product": "Bookie Guard",
+  "company": "Zebitech Global Services",
+  "license": "LICENSE",
+  "upgrade-code": "070c8d2b-283d-4783-94e9-59672f7353ac",
+  "files": {
+    "guid": "9367e385-0263-4403-af79-253dd97a04e7",
+    "items": [
+      "bookieguard.exe"
+    ]
+  },
+  "directories": [
+    "web"
+  ],
+  "env": {
+    "guid": "d2986f0a-2c5a-43f0-bf5a-2ccd406572e4",
+    "vars": [
+      {
+        "name": "PATH",
+        "value": "[INSTALLDIR]",
+        "permanent": "no",
+        "system": "no",
+        "action": "set",
+        "part": "last"
+      }
+    ]
+  },
+  "shortcuts": {
+    "guid": "cb49b9ea-0e85-4061-942f-0eb9d792a082",
+    "items": [
+      {
+        "name": "Bookie Guard",
+        "description": "Bookie Guard Software",
+        "target": "[INSTALLDIR]\\bookieguard.exe",
+        "wdir": "INSTALLDIR",
+        "arguments": "launch",
+        "icon": "ico.ico"
+      }
+    ]
+  },
+  "choco": {
+    "description": "Bookie Guard",
+    "project-url": "https://github.com/onumahkalusamuel/bookieguard",
+    "tags": "bookieguard",
+    "license-url": "https://github.com/onumahkalusamuel/bookieguard/LICENSE"
+  }
+}
