@@ -1,7 +1,6 @@
 package webserver
 
 import (
-	"fmt"
 	"net/http"
 	"os"
 
@@ -11,6 +10,12 @@ import (
 )
 
 func DeactivateHandler(w http.ResponseWriter, r *http.Request) {
+
+	if r.Method == "GET" {
+		ServeHTML(w, "deactivate")
+		return
+	}
+
 	if err := r.ParseForm(); err != nil {
 		ServeJSON(w, config.BodyStructure{
 			"success": "false",
@@ -40,8 +45,6 @@ func DeactivateHandler(w http.ResponseWriter, r *http.Request) {
 		})
 		return
 	}
-
-	fmt.Println(content)
 
 	if content["email"] != config.Email || content["unlockCode"] != config.UnlockCode {
 		ServeJSON(w, config.BodyStructure{

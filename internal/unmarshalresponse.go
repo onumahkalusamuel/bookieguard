@@ -14,12 +14,15 @@ func UnmarshalResponse(resp *http.Response) (map[string]string, error) {
 
 	err := json.NewDecoder(resp.Body).Decode(&res)
 	if err != nil {
-		return map[string]string{}, err
+		return config.BodyStructure{}, err
 	}
 
-	decrypted := pkg.Decrypt(res["data"], config.Key)
+	decrypted, err := pkg.Decrypt(res["data"], config.Key)
+	if err != nil {
+		return config.BodyStructure{}, err
+	}
 
-	var newMap map[string]string
+	var newMap config.BodyStructure
 
 	json.Unmarshal([]byte(decrypted), &newMap)
 

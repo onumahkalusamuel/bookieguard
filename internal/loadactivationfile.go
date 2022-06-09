@@ -15,7 +15,10 @@ func LoadActivationFile() (bool, config.BodyStructure) {
 		return false, config.BodyStructure{}
 	}
 
-	decrypted := pkg.Decrypt(string(f), config.Key)
+	decrypted, err := pkg.Decrypt(string(f), config.Key)
+	if err != nil {
+		return false, config.BodyStructure{}
+	}
 
 	var unmarshalled config.BodyStructure
 

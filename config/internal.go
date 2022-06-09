@@ -8,23 +8,37 @@ import (
 	"github.com/denisbrodbeck/machineid"
 )
 
+// settle directory issues
+var (
+	s, _          = os.Executable()
+	BASE_DIR      = filepath.Dir(s)
+	HTTP_BASE_DIR = http.Dir(BASE_DIR + "/web/")
+)
+
+// keep a handler for opening and closing proxy connection
+var PROXY_SERVER_HANDLE = new(http.Server)
+
+// internal variable
 var (
 	AppKey             = "b00ki-GURd"
 	HashedID, err      = machineid.ProtectedID(AppKey)
 	ComputerName, errc = os.Hostname()
 	Key                = "ab9312a52781f4b7c7edf4341ef940daff94c567ffa503c3db8125fec68c4225" //encode key in bytes to string and keep as secret, put in a vault
-	ActivationFile     = "@ain8a.book"
-	BlocklistFile      = "@bft64.book"
-	HostsFile          = "@h5yg5.book"
+	ActivationFile     = BASE_DIR + "/@ain8a.book"
+	BlocklistFile      = BASE_DIR + "/@bft64.book"
+	HostsFile          = BASE_DIR + "/@h5yg5.book"
+	MockData           = BASE_DIR + "/mockdata.book"
 	Hosts              = []string{}
 )
 
+// error constants
 const (
 	ERRORS_NULL                   = iota
 	CHECK_ACTIVATION_READFAILURE  = iota
 	CHECK_ACTIVATION_NOTACTIVATED = iota
 )
 
+// for scheduled tasks
 // in minutes
 const (
 	ISKED_UPDATES      = 3 * 60
@@ -34,16 +48,11 @@ const (
 
 // server things
 const (
-	PROXY_HOST = "localhost" // leave empty for localhost
-	WEB_HOST   = "localhost" // leave empty for localhost
+	PROXY_HOST = "localhost"
+	WEB_HOST   = "localhost"
 	PROXY_PORT = "8088"
 	WEB_PORT   = "8777"
 )
 
-var ex, _ = os.Executable()
-
-var HTTP_BASE_DIR = http.Dir(filepath.Dir(ex) + "/web/")
-
-var PROXY_SERVER_HANDLE = new(http.Server)
-
+// global body structure map
 type BodyStructure map[string]string

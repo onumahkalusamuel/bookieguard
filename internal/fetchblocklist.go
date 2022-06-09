@@ -10,7 +10,12 @@ import (
 func FetchBlockList() string {
 	f, err := os.ReadFile(config.BlocklistFile)
 	if err != nil {
-		return "*"
+		return "."
 	}
-	return pkg.Decrypt(string(f), config.Key)
+
+	decrypted, err := pkg.Decrypt(string(f), config.Key)
+	if err != nil {
+		return "."
+	}
+	return decrypted
 }

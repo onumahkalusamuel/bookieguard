@@ -11,7 +11,7 @@ func MockServerResponse(config.BodyStructure) config.BodyStructure {
 
 	var holder config.BodyStructure
 
-	res, _ := os.ReadFile("mockdata.book")
+	res, _ := os.ReadFile(config.MockData)
 
 	json.Unmarshal(res, &holder)
 

@@ -14,10 +14,12 @@ require (
 )
 
 require (
+	github.com/akavel/rsrc v0.10.2 // indirect
 	github.com/chzyer/readline v0.0.0-20180603132655-2972be24d48e // indirect
 	github.com/fatih/color v1.9.0 // indirect
 	github.com/google/uuid v1.1.1 // indirect
 	github.com/itrepablik/lumberjack v1.0.0 // indirect
+	github.com/josephspurrier/goversioninfo v1.4.0 // indirect
 	github.com/mattn/go-colorable v0.1.4 // indirect
 	github.com/mattn/go-isatty v0.0.11 // indirect
 	go.uber.org/atomic v1.6.0 // indirect

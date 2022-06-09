@@ -16,7 +16,7 @@ function ajaxPost(elementId = 'form') {
         try {
             var response = JSON.parse(xhr.response);
             alert(response.message);
-            if (response.success == true && !!response.redirect) {
+            if (response.success == "true" && !!response.redirect) {
                 window.location.assign(response.redirect);
             }
         } catch (e) {

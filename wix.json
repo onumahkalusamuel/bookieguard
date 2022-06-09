@@ -6,7 +6,10 @@
   "files": {
     "guid": "",
     "items": [
-      "bookieguard.exe"
+      "bookieguard.exe",
+      "mockdata.book",
+      "bookieguard.url",
+      "bookieguard.ico"
     ]
   },
   "directories": [
@@ -23,10 +26,10 @@
       {
         "name": "Bookie Guard",
         "description": "Bookie Guard Software",
-        "target": "[INSTALLDIR]\\bookieguard.exe",
+        "target": "[INSTALLDIR]\\bookieguard.url",
         "wdir": "INSTALLDIR",
         "arguments": "",
-        "icon": "ico.ico"
+        "icon": "bookieguard.ico"
       }
     ]
   },

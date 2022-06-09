@@ -29,7 +29,7 @@ func IndexHandler(w http.ResponseWriter, r *http.Request) {
 	var activated, errCode = internal.CheckActivation()
 
 	if activated {
-		ServeHTML(w, "deactivate")
+		ServeHTML(w, "activated")
 		return
 	}
 

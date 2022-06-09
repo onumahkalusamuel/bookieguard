@@ -18,20 +18,23 @@ func Encrypt(stringToEncrypt string, keyString string) (encryptedString string) 
 	//Create a new Cipher Block from the key
 	block, err := aes.NewCipher(key)
 	if err != nil {
-		panic(err.Error())
+		fmt.Println("Error: ", err.Error())
+		return ""
 	}
 
 	//Create a new GCM - https://en.wikipedia.org/wiki/Galois/Counter_Mode
 	//https://golang.org/pkg/crypto/cipher/#NewGCM
 	aesGCM, err := cipher.NewGCM(block)
 	if err != nil {
-		panic(err.Error())
+		fmt.Println("Error: ", err.Error())
+		return ""
 	}
 
 	//Create a nonce. Nonce should be from GCM
 	nonce := make([]byte, aesGCM.NonceSize())
 	if _, err = io.ReadFull(rand.Reader, nonce); err != nil {
-		panic(err.Error())
+		fmt.Println("Error: ", err.Error())
+		return ""
 	}
 
 	//Encrypt the data using aesGCM.Seal
