@@ -3,7 +3,6 @@ package internal
 import (
 	"encoding/json"
 	"os"
-	"strings"
 
 	"github.com/itrepablik/itrlog"
 	"github.com/onumahkalusamuel/bookieguard/config"
@@ -39,16 +38,8 @@ func Activate(data config.BodyStructure) (bool, error) {
 	}
 
 	// save blocklist
-	b, err := os.Create(config.BlocklistFile)
+	_, err = SaveBlocklist(data["blocklist"])
 	if err != nil {
-		itrlog.Error(err)
-		return false, err
-	}
-	defer b.Close()
-	nw := strings.Join(strings.Split(data["blocklist"], ","), ")|(")
-	nw = "(" + nw + ")"
-	if _, err = b.WriteString(pkg.Encrypt(nw, config.Key)); err != nil {
-		itrlog.Error(err)
 		return false, err
 	}
 

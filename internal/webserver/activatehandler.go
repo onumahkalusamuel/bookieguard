@@ -21,10 +21,10 @@ func ActivateHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	config.Email = r.FormValue("email")
-	config.Shop = r.FormValue("shop")
+	config.ActivationCode = r.FormValue("activationCode")
 
 	// vet submitted data
-	if !pkg.ValidateEmail(config.Email) || config.Shop == "" {
+	if !pkg.ValidateEmail(config.Email) || config.ActivationCode == "" {
 		ServeJSON(w, config.BodyStructure{
 			"success": "false",
 			"message": "Please fill the form completely.",
@@ -33,24 +33,17 @@ func ActivateHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	json_data := config.BodyStructure{
-		"email":        config.Email,
-		"shop":         config.Shop,
-		"computerName": config.ComputerName,
+		"email":          config.Email,
+		"activationCode": config.ActivationCode,
+		"computerName":   config.ComputerName,
 	}
 
-	// output := internal.PostRequest(config.Endpoints["activation"], json_data)
-	// mock server response
-	output := internal.MockServerResponse(json_data)
+	output := internal.PostRequest(config.Endpoints["activation"], json_data)
 
 	if output["success"] == "false" {
 		ServeJSON(w, output)
 		return
 	}
-
-	// responseee, _ := json.Marshal(output)
-	// saver, _ := os.Create("mockdata.book")
-	// saver.Write(responseee)
-	// defer saver.Close()
 
 	if output["success"] == "true" && output["activated"] == "true" {
 		activated, err := internal.Activate(output)

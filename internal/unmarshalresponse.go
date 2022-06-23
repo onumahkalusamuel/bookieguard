@@ -8,9 +8,9 @@ import (
 	"github.com/onumahkalusamuel/bookieguard/pkg"
 )
 
-func UnmarshalResponse(resp *http.Response) (map[string]string, error) {
+func UnmarshalResponse(resp *http.Response) (config.BodyStructure, error) {
 
-	var res map[string]string
+	var res config.BodyStructure
 
 	err := json.NewDecoder(resp.Body).Decode(&res)
 	if err != nil {

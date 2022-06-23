@@ -8,13 +8,13 @@ import (
 	"github.com/onumahkalusamuel/bookieguard/pkg"
 )
 
-func MarshalRequest(data map[string]string) *bytes.Buffer {
+func MarshalRequest(data config.BodyStructure) *bytes.Buffer {
 
 	data["hashedID"] = config.HashedID
 
 	json_data, _ := json.Marshal(data)
 	encrypted := pkg.Encrypt(string(json_data), config.Key)
-	d, _ := json.Marshal(map[string]string{"data": string(encrypted)})
+	d, _ := json.Marshal(config.BodyStructure{"data": string(encrypted)})
 
 	return bytes.NewBuffer(d)
 }

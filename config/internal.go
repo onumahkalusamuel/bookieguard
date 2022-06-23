@@ -1,11 +1,37 @@
 package config
 
 import (
+	"net"
 	"net/http"
 	"os"
 	"path/filepath"
 
 	"github.com/denisbrodbeck/machineid"
+)
+
+// server things
+const (
+	WEB_HOST     = "localhost"
+	WEB_PORT     = "8887"
+	PROXY_HOST   = "localhost"
+	PROXY_PORT   = "8888"
+	API_PROTOCOL = "http"
+	API_HOST     = "localhost"
+	API_PORT     = "8889"
+)
+
+var (
+	Email          string
+	ActivationCode string
+	UnlockCode     string
+	Apibase        = API_PROTOCOL + "://" + net.JoinHostPort(API_HOST, API_PORT) + "/api/"
+	Endpoints      = map[string]string{
+		"activation":       Apibase + "activation",
+		"update":           Apibase + "update",
+		"download-updates": Apibase + "download-updates",
+		"upload-hosts":     Apibase + "upload-hosts",
+		"system-status":    Apibase + "system-status",
+	}
 )
 
 // settle directory issues
@@ -27,8 +53,6 @@ var (
 	ActivationFile     = BASE_DIR + "/@ain8a.book"
 	BlocklistFile      = BASE_DIR + "/@bft64.book"
 	HostsFile          = BASE_DIR + "/@h5yg5.book"
-	MockData           = BASE_DIR + "/mockdata.book"
-	Hosts              = []string{}
 )
 
 // error constants
@@ -41,17 +65,9 @@ const (
 // for scheduled tasks
 // in minutes
 const (
-	ISKED_UPDATES      = 3 * 60
-	ISKED_START_SERVER = 30
-	ISKED_SEND_HOSTS   = 3 * 60
-)
-
-// server things
-const (
-	PROXY_HOST = "localhost"
-	WEB_HOST   = "localhost"
-	PROXY_PORT = "8088"
-	WEB_PORT   = "8777"
+	ISKED_UPDATES       = 1 * 60
+	ISKED_SYSTEM_STATUS = 3 * 60
+	ISKED_SEND_HOSTS    = 5 * 60
 )
 
 // global body structure map

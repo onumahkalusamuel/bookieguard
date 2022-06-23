@@ -45,7 +45,7 @@ div.page-title {
 }
 
 div.info {
-    margin: 1.5rem auto;
+    margin: 1.8rem auto;
     background-color: #1183;
     border: #1183 solid;
     padding: 20px;
@@ -63,38 +63,6 @@ div.info {
     /* border-radius: 20px; */
     margin-bottom: 1.5rem;
 
-}
-
-.shops-holder {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 2rem;
-}
-
-.radio-input-label {
-    font-size: 2rem;
-    padding: 10px;
-    border: darkblue solid;
-    /* border-radius: 10px; */
-    cursor: pointer;
-}
-
-.radio-input-label:hover {
-    background-color: #1182;
-}
-
-input[type="radio"] {
-    position: absolute;
-    opacity: 0;
-    z-index: -1;
-  }
-
-input[type=radio]:checked + span::before {
-    content: '';
-    border: darkblue solid;
-    background-color: darkblue;
-    padding: 2px 0 0 0.5rem;
-    margin-right: 0.5rem;
 }
 
 button.submit-button {

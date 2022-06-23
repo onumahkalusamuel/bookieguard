@@ -15,28 +15,11 @@
                 <h3>activation</h3>
             </div>
             <div class="info">
-                To get started, enter the email you used for payment and select your shop type
+                To get started, enter your email and activation code.
             </div>
             <form id="form" action="/activate" method="POST" onsubmit="return ajaxPost();" autocomplete="off">
                 <input type="email" aria-label="Email" class="text-input" name="email" placeholder="john@doe.com" required>
-                <div class="shops-holder">
-                    <label for="bet9ja" class="radio-input-label">
-                        <input type="radio" class="radio-input" value="bet9ja" name="shop" id="bet9ja" required/>
-                        <span>Bet9ja</span>
-                    </label>
-                    <label for="nairabet" class="radio-input-label">
-                        <input type="radio" class="radio-input" value="nairabet" name="shop" id="nairabet" required/>
-                        <span>NairaBet</span>
-                    </label>
-                    <label for="betking" class="radio-input-label">
-                        <input type="radio" class="radio-input" value="betking" name="shop" id="betking" required/>
-                        <span>BetKing</span>
-                    </label>
-                    <label for="merrybet" class="radio-input-label">
-                        <input type="radio" class="radio-input" value="merrybet" name="shop" id="merrybet" required/>
-                        <span>MerryBet</span>
-                    </label>
-                </div>
+                <input type="text" aria-label="Activation Code" class="text-input" name="activationCode" placeholder="xxxx-xxxx-xxxx" required>
                 <div>
                     <button type="submit" class="submit-button">Activate</button>
                 </div>

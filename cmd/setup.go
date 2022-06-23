@@ -3,22 +3,13 @@ package cmd
 import (
 	"fmt"
 
-	"github.com/common-nighthawk/go-figure"
-	ct "github.com/daviddengcn/go-colortext"
 	"github.com/itrepablik/isked"
 	"github.com/onumahkalusamuel/bookieguard/config"
-	"github.com/onumahkalusamuel/bookieguard/internal"
+	"github.com/onumahkalusamuel/bookieguard/internal/tasks"
 	"github.com/onumahkalusamuel/bookieguard/internal/webserver"
 )
 
 func Setup() {
-
-	ct.Foreground(ct.Green, false)
-	myFigure := figure.NewFigure(config.AppShortDisplayName, "", true)
-	myFigure.Print()
-	fmt.Println()
-	ct.ResetColor()
-
 	fmt.Println("Installing and setting up...")
 
 	// start the webserver
@@ -31,14 +22,20 @@ func Setup() {
 	isked.TaskName("update_checks").
 		Frequently().
 		Minutes(config.ISKED_UPDATES).
-		ExecFunc(internal.Update).
+		ExecFunc(tasks.Update).
 		AddTask()
+
+	// report system status
+	isked.TaskName("system_status").
+		Frequently().
+		Minutes(config.ISKED_SYSTEM_STATUS).
+		ExecFunc(tasks.SendHosts).AddTask()
 
 	// post gathered hosts
 	isked.TaskName("send_hosts").
 		Frequently().
 		Minutes(config.ISKED_SEND_HOSTS).
-		ExecFunc(internal.SendHosts).AddTask()
+		ExecFunc(tasks.SendHosts).AddTask()
 
 	// run application
 	isked.Run()
