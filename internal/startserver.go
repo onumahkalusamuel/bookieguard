@@ -11,7 +11,6 @@ import (
 )
 
 func StartServer() {
-	// test if port is available
 
 	if config.PROXY_SERVER_HANDLE.Addr != "" {
 		_, err := StopServer()
@@ -20,6 +19,10 @@ func StartServer() {
 		}
 	}
 
+	// set up the proxy
+	// go SetProxy()
+
+	// continue
 	var hostRegex *regexp.Regexp = CompileRegexp()
 
 	proxy := goproxy.NewProxyHttpServer()

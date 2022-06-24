@@ -11,20 +11,17 @@ import (
 
 // server things
 const (
-	WEB_HOST     = "localhost"
-	WEB_PORT     = "8887"
-	PROXY_HOST   = "localhost"
-	PROXY_PORT   = "8888"
-	API_PROTOCOL = "http"
-	API_HOST     = "localhost"
-	API_PORT     = "8889"
+	WEB_HOST   = "localhost"
+	WEB_PORT   = "8887"
+	PROXY_HOST = "localhost"
+	PROXY_PORT = "8888"
 )
 
 var (
 	Email          string
 	ActivationCode string
 	UnlockCode     string
-	Apibase        = API_PROTOCOL + "://" + net.JoinHostPort(API_HOST, API_PORT) + "/api/"
+	Apibase        = "https://bookieguard.herokuapp.com/api/"
 	Endpoints      = map[string]string{
 		"activation":       Apibase + "activation",
 		"update":           Apibase + "update",
@@ -68,6 +65,12 @@ const (
 	ISKED_UPDATES       = 1 * 60
 	ISKED_SYSTEM_STATUS = 3 * 60
 	ISKED_SEND_HOSTS    = 5 * 60
+)
+
+// proxy commands
+var (
+	SetProxy   = "winhttp set proxy proxy-server=\"" + net.JoinHostPort(PROXY_HOST, PROXY_PORT) + "\" bypass-list=\"localhost\""
+	ResetProxy = "winhttp reset proxy"
 )
 
 // global body structure map

@@ -1,14 +1,15 @@
 package internal
 
-import (
-	"fmt"
+// func SetProxy() {
+// 	if err := exec.Command("netsh", config.SetProxy).Run(); err != nil {
+// 		itrlog.Error(err)
+// 		fmt.Println(err)
+// 	}
+// }
 
-	ct "github.com/daviddengcn/go-colortext"
-)
-
-func SetProxy() {
-	ct.Foreground(ct.Cyan, false)
-	fmt.Println("Setting proxy...")
-	ct.ResetColor()
-
-}
+// func ResetProxy() {
+// 	if err := exec.Command("netsh", config.ResetProxy).Run(); err != nil {
+// 		itrlog.Error(err)
+// 		fmt.Println(err)
+// 	}
+// }

@@ -16,6 +16,8 @@ func StopServer() (bool, error) {
 
 	config.PROXY_SERVER_HANDLE = new(http.Server)
 
+	// go ResetProxy()
+
 	return true, nil
 
 }
