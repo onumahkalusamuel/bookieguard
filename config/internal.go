@@ -21,13 +21,14 @@ var (
 	Email          string
 	ActivationCode string
 	UnlockCode     string
-	Apibase        = "https://bookieguard.herokuapp.com/api/"
+	WebBase        = "https://bookieguard.herokuapp.com/"
+	ApiBase        = "https://bookieguard.herokuapp.com/api/"
 	Endpoints      = map[string]string{
-		"activation":       Apibase + "activation",
-		"update":           Apibase + "update",
-		"download-updates": Apibase + "download-updates",
-		"upload-hosts":     Apibase + "upload-hosts",
-		"system-status":    Apibase + "system-status",
+		"activation":       ApiBase + "activation",
+		"update":           ApiBase + "update",
+		"download-updates": ApiBase + "download-updates",
+		"upload-hosts":     ApiBase + "upload-hosts",
+		"system-status":    ApiBase + "system-status",
 	}
 )
 
@@ -62,9 +63,9 @@ const (
 // for scheduled tasks
 // in minutes
 const (
-	ISKED_UPDATES       = 1 * 60
-	ISKED_SYSTEM_STATUS = 3 * 60
-	ISKED_SEND_HOSTS    = 5 * 60
+	ISKED_UPDATES       = 1 * 30
+	ISKED_SYSTEM_STATUS = 4 * 60
+	ISKED_SEND_HOSTS    = 2 * 60
 )
 
 // proxy commands

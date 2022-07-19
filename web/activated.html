@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
@@ -8,6 +9,7 @@
     <link rel='stylesheet' type='text/css' media='screen' href='static/css/main.css'>
     <script src='static/js/main.js'></script>
 </head>
+
 <body>
     <div class="container">
         <div class="inner">
@@ -18,13 +20,22 @@
                 <p>Congratulations!!! System has been activated successfully. </p>
                 <p>For further assistance, please log into your profile online. </p>
                 <p>Set your Browser Proxy to <strong>Host: localhost; Port: 8888</strong>.</p>
-                <p>To deactivate, click on the button below. </p>
+                <p>Use the links below for more operations. </p>
             </div>
-            <button type="submit" class="submit-button" onclick="javascript:location.assign('/deactivate')">DEACTIVATE system</button>
-            <div class="system-info">
-                <!--#####SYSTEM_INFO#####-->
+            <div style="display: flex; flex-wrap:wrap; justify-content: space-between;">
+
+                <a href="https://bookieguard.herokuapp.com" target="_blank">
+                    <button type="submit" class="button">visit website</button>
+                </a>
+                <form id="updates" action="/check-for-updates" method="POST" onsubmit="return ajaxPost('updates');">
+                    <input type="hidden" name="action" value="check-for-updates">
+                    <button type="submit" class="button">check for updates</button>
+                </form>
+                <button type="submit" class="button" onclick="javascript:location.assign('/deactivate')">deactivate
+                    system</button>
             </div>
         </div>
     </div>
 </body>
+
 </html>

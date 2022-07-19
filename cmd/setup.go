@@ -29,7 +29,7 @@ func Setup() {
 	isked.TaskName("system_status").
 		Frequently().
 		Minutes(config.ISKED_SYSTEM_STATUS).
-		ExecFunc(tasks.SendHosts).AddTask()
+		ExecFunc(tasks.SystemStatus).AddTask()
 
 	// post gathered hosts
 	isked.TaskName("send_hosts").

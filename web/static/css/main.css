@@ -65,6 +65,21 @@ div.info {
 
 }
 
+button.button {
+    height: 3.5rem;
+    /* width: 100%; */
+    font-size: large;
+    cursor: pointer;
+    border-radius: 20px;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    text-transform: uppercase;
+    background-color: #118d;
+    border: none;
+    color: white;
+
+}
+
 button.submit-button {
     height: 3.5rem;
     width: 100%;
@@ -77,7 +92,8 @@ button.submit-button {
     color: white;
 
 }
-button.submit-button:hover {
+
+button.submit-button:hover, button.button:hover {
     background-color: #118;
 } 
 h1, h2, h3, h4 {

@@ -37,8 +37,8 @@ func StartWebServer() {
 
 	// others
 	http.HandleFunc("/deactivate", DeactivateHandler)
-
 	http.HandleFunc("/activate", ActivateHandler)
+	http.HandleFunc("/check-for-updates", UpdatesHandler)
 
 	fmt.Printf("Starting server at port %v\n", config.WEB_PORT)
 	if err := http.ListenAndServe(net.JoinHostPort(config.WEB_HOST, config.WEB_PORT), nil); err != nil {
